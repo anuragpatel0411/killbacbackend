@@ -1,0 +1,3 @@
+install express
+install nodemon
+install mongoose for mongodb
