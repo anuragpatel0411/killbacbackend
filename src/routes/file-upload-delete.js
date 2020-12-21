@@ -64,7 +64,8 @@ router.post('/files/upload-product-images', (req, resp) => {
 
 const storageBannerImage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'uploads/banners/');
+        cb(null, path.join(__dirname, 'uploads/banners/'));
+        // cb(null, 'uploads/banners/');
     },
 
     // By default, multer removes file extensions so let's add them back
