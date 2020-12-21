@@ -61,7 +61,7 @@ router.post('/files/upload-product-images', (req, resp) => {
 // Banner File APIs
 // ===============================================================================================================
 // ===============================================================================================================
-const bannerPath  = path.join(__dirname, 'uploads/banners/');
+const bannerPath  = path.join(__dirname, '../../uploads/banners/');
 
 const storageBannerImage = multer.diskStorage({
     // destination: function(req, file, cb) {
