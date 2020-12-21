@@ -10,10 +10,20 @@ const path = require('path');
 // Product File APIs
 // ===============================================================================================================
 // ===============================================================================================================
+const productPath  = path.join(__dirname, '../../uploads/products/');
 
 const storageProdImages = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'uploads/products/');
+    // destination: function(req, file, cb) {
+    //     cb(null, 'uploads/products/');
+    // },
+
+    destination: (req, file, cb) => {
+        if (!fs.existsSync(productPath)) {
+            fs.mkdir(productPath, { recursive: true }, (err) => {
+                console.log(err);
+            });
+        }
+        cb(null, productPath);
     },
 
     // By default, multer removes file extensions so let's add them back
@@ -64,10 +74,6 @@ router.post('/files/upload-product-images', (req, resp) => {
 const bannerPath  = path.join(__dirname, '../../uploads/banners/');
 
 const storageBannerImage = multer.diskStorage({
-    // destination: function(req, file, cb) {
-    //     cb(null, path.join(__dirname, 'uploads/banners/'));
-    //     // cb(null, 'uploads/banners/');
-    // },
 
     // By default, multer removes file extensions so let's add them back
     filename: function(req, file, cb) {
@@ -116,10 +122,20 @@ router.post('/files/upload-banner-image', (req, resp) => {
 // ===============================================================================================================
 // ===============================================================================================================
 
+const promoPath  = path.join(__dirname, '../../uploads/promos/');
 
 const storagePromoImages = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'uploads/promos/');
+    // destination: function(req, file, cb) {
+    //     cb(null, 'uploads/promos/');
+    // },
+    
+    destination: (req, file, cb) => {
+        if (!fs.existsSync(promoPath)) {
+            fs.mkdir(promoPath, { recursive: true }, (err) => {
+                console.log(err);
+            });
+        }
+        cb(null, promoPath);
     },
 
     // By default, multer removes file extensions so let's add them back
