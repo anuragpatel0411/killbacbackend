@@ -61,16 +61,26 @@ router.post('/files/upload-product-images', (req, resp) => {
 // Banner File APIs
 // ===============================================================================================================
 // ===============================================================================================================
+const bannerPath  = path.join(__dirname, 'uploads/banners/');
 
 const storageBannerImage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, path.join(__dirname, 'uploads/banners/'));
-        // cb(null, 'uploads/banners/');
-    },
+    // destination: function(req, file, cb) {
+    //     cb(null, path.join(__dirname, 'uploads/banners/'));
+    //     // cb(null, 'uploads/banners/');
+    // },
 
     // By default, multer removes file extensions so let's add them back
     filename: function(req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    },
+
+    destination: (req, file, cb) => {
+            if (!fs.existsSync(bannerPath)) {
+                fs.mkdir(productPath, { recursive: true }, (err) => {
+                    console.log(err);
+                });
+            }
+            cb(null, bannerPath);
     }
 });
 
