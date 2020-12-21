@@ -76,7 +76,7 @@ const storageBannerImage = multer.diskStorage({
 
     destination: (req, file, cb) => {
             if (!fs.existsSync(bannerPath)) {
-                fs.mkdir(productPath, { recursive: true }, (err) => {
+                fs.mkdir(bannerPath, { recursive: true }, (err) => {
                     console.log(err);
                 });
             }
