@@ -182,7 +182,10 @@ router.post('/files/upload-promo-image', (req, resp) => {
 router.post('/files/delete-files', (req, resp) => {
     let location= "";
     if(req.body.type== 'product'){
-        location= "./uploads/products/";
+        
+        location  = path.join(__dirname, '../../uploads/products/');
+
+        // location= "./uploads/products/";
         
         function deleteFiles(files, callback){
             var i = files.length;
@@ -209,7 +212,8 @@ router.post('/files/delete-files', (req, resp) => {
     }
 
     if(req.body.type== 'promo'){
-        location= "./uploads/promos/";
+        location  = path.join(__dirname, '../../uploads/promos/');
+        // location= "./uploads/promos/";
         fs.unlink(location+req.body.data.fileName, function (err) {
             if (err) resp.status(200).send(err)
             // if no error, file has been deleted successfully
@@ -219,7 +223,8 @@ router.post('/files/delete-files', (req, resp) => {
 
 
     if(req.body.type== 'banner'){
-        location= "./uploads/banners/";
+        location  = path.join(__dirname, '../../uploads/banners/');
+        // location= "./uploads/banners/";
         fs.unlink(location+req.body.data.fileName, function (err) {
             if (err) resp.status(200).send(err)
             // if no error, file has been deleted successfully
