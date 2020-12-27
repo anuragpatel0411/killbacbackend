@@ -34,6 +34,21 @@ router.post('/user-message/send-user-message', async(req, resp)=>{
     let model= new UserMessageModel(req.body.data)
     model.save()
         .then(data=> {
+            var reqData= {
+                'to': 'killbac@gmail.com',
+                'subject': `KILLBACC - Query: ${req.body.message.subject}`,
+                'body': `<div style="text-align:left;width:90vw;margin:0 auto;padding:20px;padding:15px;
+                    border-radius:15px;border:1px solid #ecb13080;background-color:#ecb1301a;"><h1 
+                    style="color:#ecb130;font-weight:600;margin:0;text-align:center;">KillBacc</h1>
+                    <div class="msgDetail"><div style="font-size:14px;line-height:14px;"><span>
+                    <b>Subject:</b>${req.body.message.subject}</span></div></div><div style="margin:10px 0;
+                    padding:10px;background-color:#fff;border-radius:15px;font-size:14px;">
+                    <div style="border-bottom:1px solid#cecece;margin-bottom:10px;padding-bottom:10px;">
+                    <b>YourMessage: </b>${req.body.message.message}</div></div></div>`
+            }
+        
+            email.sendEmail(reqData)
+
             if(!data || data.length === 0)
                 return resp.status(500).send(data)
             resp.status(201).send("Message Sent Successfully.!")
@@ -52,16 +67,16 @@ router.post('/user-message/send-user-reply', async(req, resp)=>{
     }
     var reqData= {
         'to': req.body.message.email,
-            'subject': `KILLBACC - Reply to: ${req.body.message.subject}`,
-            'body': `<div style="text-align:left;width:90vw;margin:0 auto;padding:20px;padding:15px;
-                border-radius:15px;border:1px solid #ecb13080;background-color:#ecb1301a;"><h1 
-                style="color:#ecb130;font-weight:600;margin:0;text-align:center;">KillBacc</h1>
-                <div class="msgDetail"><div style="font-size:14px;line-height:14px;"><span>
-                <b>Subject:</b>${req.body.message.subject}</span></div></div><div style="margin:10px 0;
-                padding:10px;background-color:#fff;border-radius:15px;font-size:14px;">
-                <div style="border-bottom:1px solid#cecece;margin-bottom:10px;padding-bottom:10px;">
-                <b>YourMessage: </b>${req.body.message.message}</div><div class="reply"*ngIf="message.replied"><b>Reply: 
-                </b>${req.body.data.reply}</div></div></div>`
+        'subject': `KILLBACC - Reply to: ${req.body.message.subject}`,
+        'body': `<div style="text-align:left;width:90vw;margin:0 auto;padding:20px;padding:15px;
+            border-radius:15px;border:1px solid #ecb13080;background-color:#ecb1301a;"><h1 
+            style="color:#ecb130;font-weight:600;margin:0;text-align:center;">KillBacc</h1>
+            <div class="msgDetail"><div style="font-size:14px;line-height:14px;"><span>
+            <b>Subject:</b>${req.body.message.subject}</span></div></div><div style="margin:10px 0;
+            padding:10px;background-color:#fff;border-radius:15px;font-size:14px;">
+            <div style="border-bottom:1px solid#cecece;margin-bottom:10px;padding-bottom:10px;">
+            <b>YourMessage: </b>${req.body.message.message}</div><div class="reply"><b>Reply: 
+            </b>${req.body.data.reply}</div></div></div>`
     }
 
     email.sendEmail(reqData)

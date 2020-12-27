@@ -8,7 +8,7 @@ let promo= require('./routes/promo')
 let banner= require('./routes/banner')
 let user= require('./routes/userMessage')
 let fileUploadDelete= require('./routes/file-upload-delete')
-
+let cleanup= require('./routes/cleanup')
 
 let path= require('path')
 let bodyParser = require('body-parser')
@@ -41,6 +41,7 @@ app.use(promo)
 app.use(banner)
 app.use(user)
 app.use(fileUploadDelete)
+app.use(cleanup)
 
 app.use(express.static('public'))
 

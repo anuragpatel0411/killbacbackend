@@ -102,7 +102,13 @@ router.delete('/product/delete-product/:_id', (req, resp)=>{
         _id: req.params._id
     })                              
         .then(doc=>{
-            resp.json(doc)
+            RatingReviewModel.deleteMany({
+                productId: req.params._id
+            }).then(doc=>{
+                resp.json(doc)
+            }).catch(err=>{
+                resp.status(500).json(err)
+            })
         }) 
         .catch(err=>{
             resp.status(500).json(err)
@@ -173,7 +179,6 @@ router.post('/products/rate-product', async(req, resp)=>{
     if (rating) {
         return resp.status(201).send('You have already rated this product.');
     }else{
-        console.log("hello bro")
         let model= new RatingReviewModel(req.body.data)
         model.save()
             .then(

@@ -127,17 +127,4 @@ router.delete('/banner/delete-banner/:_id', (req, resp)=>{
 })
 
 
-// DELETE Banner
-router.get('/banner/delete-banners', (req, resp)=>{
-    BannerModel.remove()                              
-        .then(doc=>{
-            resp.json(doc)
-        }) 
-        .catch(err=>{
-            resp.status(500).json(err)
-        })
-})
-
-
-
 module.exports= router
