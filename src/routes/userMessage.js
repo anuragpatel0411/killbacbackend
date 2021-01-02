@@ -41,8 +41,8 @@ router.post('/user-message/send-user-message', async(req, resp)=>{
             <div class="msgDetail"><div style="font-size:14px;line-height:14px;"><span>
             <b>Subject:</b>${req.body.data.subject}</span></div></div><div style="margin:10px 0;
             padding:10px;background-color:#fff;border-radius:15px;font-size:14px;">
-            <div style="border-bottom:1px solid#cecece;margin-bottom:10px;padding-bottom:10px;">
-            <b>YourMessage: </b>${req.body.data.message}</div></div></div>`
+            <div style="margin-bottom:10px;padding-bottom:10px;">
+            ${req.body.data.message}</div></div></div>`
     }
 
     email.sendEmail(reqData)
@@ -76,7 +76,7 @@ router.post('/user-message/send-user-reply', async(req, resp)=>{
             <b>Subject:</b>${req.body.message.subject}</span></div></div><div style="margin:10px 0;
             padding:10px;background-color:#fff;border-radius:15px;font-size:14px;">
             <div style="border-bottom:1px solid#cecece;margin-bottom:10px;padding-bottom:10px;">
-            <b>YourMessage: </b>${req.body.message.message}</div><div class="reply"><b>Reply: 
+            <b>Your Message: </b>${req.body.message.message}</div><div class="reply"><b>Reply: 
             </b>${req.body.data.reply}</div></div></div>`
     }
 
