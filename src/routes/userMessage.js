@@ -34,15 +34,15 @@ router.post('/user-message/send-user-message', async(req, resp)=>{
     
     var reqData= {
         'to': 'shivwatercorporation@gmail.com',
-        'subject': `KILLBACC - You have received new query: ${req.body.message.subject}`,
+        'subject': `KILLBACC - You have received new query: ${req.body.data.subject}`,
         'body': `<div style="text-align:left;width:90vw;max-width:600px;margin:0 auto;padding:20px;padding:15px;
             border-radius:15px;border:1px solid #ecb13080;background-color:#ecb1301a;"><h1 
             style="color:#ecb130;font-weight:600;margin:0;text-align:center;">KillBacc</h1>
             <div class="msgDetail"><div style="font-size:14px;line-height:14px;"><span>
-            <b>Subject:</b>${req.body.message.subject}</span></div></div><div style="margin:10px 0;
+            <b>Subject:</b>${req.body.data.subject}</span></div></div><div style="margin:10px 0;
             padding:10px;background-color:#fff;border-radius:15px;font-size:14px;">
             <div style="border-bottom:1px solid#cecece;margin-bottom:10px;padding-bottom:10px;">
-            <b>YourMessage: </b>${req.body.message.message}</div></div></div>`
+            <b>YourMessage: </b>${req.body.data.message}</div></div></div>`
     }
 
     email.sendEmail(reqData)
