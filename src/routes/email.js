@@ -12,7 +12,7 @@ exports.sendEmail = async function (reqData) {
     })
     
     var mailOptions= {
-        from: 'contactkillbacc@gmail.com',
+        from: 'Killbacc Cleaning Products',
         to: reqData.to,
         subject: reqData.subject,
         html: reqData.body
