@@ -6,13 +6,13 @@ exports.sendEmail = async function (reqData) {
     var transporter= nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'patelanurag.0411@gmail.com',
-            pass: 'Anur@g0411'
+            user: 'contactkillbacc@gmail.com',
+            pass: 'shioja@1306'
         }
     })
     
     var mailOptions= {
-        from: 'patelanurag.0411@gmail.com',
+        from: 'contactkillbacc@gmail.com',
         to: reqData.to,
         subject: reqData.subject,
         html: reqData.body

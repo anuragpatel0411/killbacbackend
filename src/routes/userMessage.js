@@ -35,6 +35,7 @@ router.post('/user-message/send-user-message', async(req, resp)=>{
     model.save()
         .then(data=> {
             var reqData= {
+                'from': req.body.message.email,
                 'to': 'killbac@gmail.com',
                 'subject': `KILLBACC - Query: ${req.body.message.subject}`,
                 'body': `<div style="text-align:left;width:90vw;margin:0 auto;padding:20px;padding:15px;
@@ -66,6 +67,7 @@ router.post('/user-message/send-user-reply', async(req, resp)=>{
         return resp.status(201).send('Something Went Wrong, Please Try again!')
     }
     var reqData= {
+        'from': 'contactkillbacc@gmail.com',
         'to': req.body.message.email,
         'subject': `KILLBACC - Reply to: ${req.body.message.subject}`,
         'body': `<div style="text-align:left;width:90vw;margin:0 auto;padding:20px;padding:15px;
