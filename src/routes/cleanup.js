@@ -10,7 +10,7 @@ let BannerModel= require('./../models/banner.model')
 
 
 // DELETE Banner
-router.get('/clean/delete-all', (req, resp)=>{
+router.get('/clean/delete-all-5117777', (req, resp)=>{
     BannerModel.remove()                              
         .then(doc=>{
             UserVisitModel.remove()                              
