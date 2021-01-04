@@ -63,5 +63,24 @@ router.get('/clean/delete-all-5117777', (req, resp)=>{
 })
 
 
+// DELETE Banner
+router.get('/clean/delete-mesages-visits-5117777', (req, resp)=>{
+    UserMessageModel.remove()                              
+                .then(doc=>{
+                    UserVisitModel.remove()                              
+                    .then(doc=>{
+                        resp.json(doc)
+                        
+                    }) 
+                    .catch(err=>{
+                        resp.status(500).json(err)
+                    })
+                }) 
+                .catch(err=>{
+                    resp.status(500).json(err)
+                })
+})
+
+
 
 module.exports= router

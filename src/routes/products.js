@@ -150,7 +150,10 @@ router.post('/products/update-product', (req, resp)=>{
         {
             $set:{
                 price: req.body.data.currentPrice,
-                priceNormal: req.body.data.mrp
+                priceNormal: req.body.data.priceNormal,
+                name: req.body.data.name,
+                description: req.body.data.description,
+                features: req.body.data.features,
             },
             $currentDate: {
                 lastModified: true
